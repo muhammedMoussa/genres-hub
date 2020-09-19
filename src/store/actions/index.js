@@ -1,32 +1,25 @@
-import { ADD_ARTICLE } from "../../config";
-export const FETCH_PRODUCTS_PENDING = 'FETCH_PRODUCTS_PENDING';
-export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-export const FETCH_PRODUCTS_ERROR = 'FETCH_PRODUCTS_ERROR';
+import { 
+    FETCH_GET_GENRS_PENDING, 
+    FETCH_GET_GENRS_SUCCESS, 
+    FETCH_GET_GENRS_ERROR 
+} from '../../config'
 
-export function addArticle(payload) {
-  return { type: ADD_ARTICLE, payload };
-}
-
-export function getData() {
-    return { type: "DATA_REQUESTED" };
-  }
-
-export function fetchProductsPending() {
+export function fetchGenrsPending() {
     return {
-        type: FETCH_PRODUCTS_PENDING
+        type: FETCH_GET_GENRS_PENDING
     }
 }
 
-export function fetchProductsSuccess(products) {
+export function fetchGenrsSuccess(genrs) {
     return {
-        type: FETCH_PRODUCTS_SUCCESS,
-        products: products
+        type: FETCH_GET_GENRS_SUCCESS,
+        genrs: genrs
     }
 }
 
-export function fetchProductsError(error) {
+export function fetchGenrsError(error) {
     return {
-        type: FETCH_PRODUCTS_ERROR,
+        type: FETCH_GET_GENRS_ERROR,
         error: error
     }
 }

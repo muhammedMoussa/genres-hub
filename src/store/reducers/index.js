@@ -1,30 +1,30 @@
-import {
-    FETCH_PRODUCTS_PENDING, 
-    FETCH_PRODUCTS_SUCCESS, 
-    FETCH_PRODUCTS_ERROR
-} from '../actions';
+import { 
+    FETCH_GET_GENRS_PENDING, 
+    FETCH_GET_GENRS_SUCCESS, 
+    FETCH_GET_GENRS_ERROR 
+} from '../../config'
 
 const initialState = {
     pending: false,
-    products: [],
-    error: null
+    genrs: [],
+    error: null,
+    test: 'aaaaaaaaaa'
 }
 
  function rootReducer(state = initialState, action) {
     switch(action.type) {
-        case FETCH_PRODUCTS_PENDING: 
+        case FETCH_GET_GENRS_PENDING: 
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_PRODUCTS_SUCCESS:
-            debugger
+        case FETCH_GET_GENRS_SUCCESS:
             return {
                 ...state,
                 pending: false,
-                products: action.products
+                genrs: action.genrs
             }
-        case FETCH_PRODUCTS_ERROR:
+        case FETCH_GET_GENRS_ERROR:
             return {
                 ...state,
                 pending: false,
@@ -35,7 +35,8 @@ const initialState = {
     }
 }
 
-export const getProducts = state => state.products;
-export const getProductsPending = state => state.pending;
-export const getProductsError = state => state.error;
+export const getGenrs = state => state.genrs;
+export const getGenrsPending = state => state.pending;
+export const getGenrsError = state => state.error;
+
 export default rootReducer;
