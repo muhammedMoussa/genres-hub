@@ -2,11 +2,10 @@ import React from 'react';
 import './App.css';
 import HooksGenrs from './components/hooks/HooksGenrs/HooksGenrs';
 import Header from './components/Header/Header';
-// import HooksGenrs from './components/hooks/HooksGenrs/HooksGenrs';
 
 function App() {  
   return (
-    <div className="App">
+    <div className="app">
       <Header />
       <HooksGenrs /> 
     </div>
