@@ -11,7 +11,7 @@ import { Grid, CircularProgress } from '@material-ui/core';
 
 import './styles.css';
 import ArtistModal from '../ArtistModal/ArtistModal';
-import { api } from '../../config';
+import { api, headers } from '../../config';
 
 const useStyles = makeStyles({
     root: {
@@ -31,11 +31,7 @@ function Artists({data}) {
 
     const handleOpenModal = (id) => {
         setLoading(true);
-        fetch(`${api.ARTIST_API}/${id}`, {
-            headers: {
-                'Accept-Language': 'en-US'
-            }
-        })
+        fetch(`${api.ARTIST_API}/${id}`, { headers })
         .then((res) => res.json())
         .then((res) => {
             setLoading(false);

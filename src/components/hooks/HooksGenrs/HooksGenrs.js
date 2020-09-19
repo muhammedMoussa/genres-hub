@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core';
 
-import { api } from '../../../config';
+import { api, headers } from '../../../config';
 import GenerCard from '../../GenerCard';
 import './styles.css'
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
@@ -11,11 +11,7 @@ function HooksGenrs() {
     const [loading, setLoading] = useState([])
 
     const getData = () =>
-      fetch(api.GENRS_API, {
-        headers: {
-            'Accept-Language': 'en-US'
-          }
-      })
+      fetch(api.GENRS_API, { headers })
         .then((res) => res.json())
         .then((res) => res.data)
   

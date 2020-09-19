@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { api } from '../../../config';
+import { api, headers } from '../../../config';
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
 import Artists from '../../Artists/Artists';
 import { Fade } from '@material-ui/core';
@@ -13,11 +13,7 @@ function Genr() {
     React.useEffect(() => {
       const getData = () => {
         setLoading(true)
-        return fetch(`${api.GENR_CHART_API}/${id}`, {
-          headers: {
-              'Accept-Language': 'en-US'
-            }
-        })
+        return fetch(`${api.GENR_CHART_API}/${id}`, { headers })
           .then((res) => res.json())
           .then((res) => res.artists.data)
           .then((res) => {
