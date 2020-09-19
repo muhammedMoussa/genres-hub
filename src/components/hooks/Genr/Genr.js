@@ -4,12 +4,22 @@ import { api, headers } from '../../../config';
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
 import Artists from '../../Artists/Artists';
 import { Fade } from '@material-ui/core';
+import ErrorAlert from '../../ErrorAlert/ErrorAlert';
 
 function Genr() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState([])
     let { id } = useParams();
+    const [error, setError] = React.useState(false)
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
     
+        setError(false);
+    };
+
     React.useEffect(() => {
       const getData = () => {
         setLoading(true)
@@ -19,12 +29,10 @@ function Genr() {
           .then((res) => {
             setLoading(false)
             setData(res)
-            console.log(data)
           })
-          .catch(err => {
-              // @TODO: HANDLE ERROR
-              setLoading(false)
-              console.log(err)
+          .catch(() => {
+            setLoading(false)
+            setError(true)
           })
       }
       
@@ -35,11 +43,12 @@ function Genr() {
     return (
       <div>
         {loading && (<GHSkeleton />)}
-        {data?.length && (
+        {data && (
           <Fade in>
             <Artists data={data} />
           </Fade>
         )}
+        <ErrorAlert open={error} handleClose={() => handleClose()}/>
       </div>
     )
 }

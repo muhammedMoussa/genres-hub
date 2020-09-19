@@ -5,10 +5,20 @@ import { api, headers } from '../../../config';
 import GenerCard from '../../GenerCard';
 import './styles.css'
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
+import ErrorAlert from '../../ErrorAlert/ErrorAlert';
 
 function HooksGenrs() {
     const [data, setData] = useState([])
+    const [error, setError] = useState(false)
     const [loading, setLoading] = useState([])
+
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setError(false);
+    };
 
     const getData = () =>
       fetch(api.GENRS_API, { headers })
@@ -22,10 +32,9 @@ function HooksGenrs() {
           setLoading(false)
           setData(data)
         })
-        .catch(err => {
-            // @TODO: HANDLE ERROR
+        .catch(() => {
             setLoading(false)
-            console.log(err)
+            setError(true)
         })
     }, [])
   
@@ -42,6 +51,8 @@ function HooksGenrs() {
               ))}
             </Grid>
           </div>
+          
+          <ErrorAlert open={error} handleClose={() => handleClose()}/>
         </>
     )
 }

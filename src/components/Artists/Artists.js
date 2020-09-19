@@ -12,6 +12,7 @@ import { Grid, CircularProgress } from '@material-ui/core';
 import './styles.css';
 import ArtistModal from '../ArtistModal/ArtistModal';
 import { api, headers } from '../../config';
+import ErrorAlert from '../ErrorAlert/ErrorAlert';
 
 const useStyles = makeStyles({
     root: {
@@ -28,6 +29,15 @@ function Artists({data}) {
     const [loading, setLoading] = React.useState(false)
     const [isOpen, setIsOpen] = React.useState(false);
     const [currentArtist, setCurrentArtist] = React.useState({});
+    const [error, setError] = React.useState(false)
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setError(false);
+    };
 
     const handleOpenModal = (id) => {
         setLoading(true);
@@ -38,10 +48,9 @@ function Artists({data}) {
             setCurrentArtist(res);
             setTimeout(() => setIsOpen(true))
         })
-        .catch(err => {
-            // @TODO: HANDLE
+        .catch(() => {
             setLoading(false);
-            console.log(err)
+            setError(true)
         })
     }
 
@@ -72,15 +81,14 @@ function Artists({data}) {
                     </Grid>
                 ))}
             </Grid>
-            {/* @TODO: STYLE SPINNER */}
             {loading && (<div className="spinner__container"><CircularProgress /></div>)}
             <ArtistModal 
                 open={isOpen}
                 handleClose={() => setIsOpen(false)}
                 data={currentArtist}
             >
-                
             </ArtistModal>
+            <ErrorAlert open={error} handleClose={() => handleClose()}/>
         </div>
     )
 }
