@@ -36,7 +36,7 @@ function GenerCard({data}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" variant="outlined" >
           <Link to={`genr/${data.id}`}>Show Artists </Link>
         </Button>
       </CardActions>

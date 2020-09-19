@@ -1,3 +1,8 @@
 .genrs__container {
     margin: 50px
 }
+
+.genrs__container h1 {
+    margin-bottom: 20px;
+    color: rgb(109 93 93 / 87%)
+}
