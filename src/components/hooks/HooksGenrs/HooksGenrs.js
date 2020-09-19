@@ -30,18 +30,19 @@ function HooksGenrs() {
     }, [])
   
     return (
-        <div className="genrs__container">
-          <h1>List of music genres for you!</h1>
-          <Grid container spacing={5}>
-            {loading && (<GHSkeleton />)}
-            {data?.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id} >
-                <GenerCard data={item} />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-
+        <>
+          {loading && (<GHSkeleton />)}
+          <div className="genrs__container">
+            <h1>List of music genres for you!</h1>
+            <Grid container spacing={5}>
+              {data?.map((item) => (
+                <Grid item xs={12} sm={6} md={4} key={item.id} >
+                  <GenerCard data={item} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </>
     )
 }
 
