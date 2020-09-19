@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { api } from '../../../config';
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
@@ -11,30 +11,54 @@ function Genr() {
 
     let { id } = useParams();
     
-    const getData = () =>
-      fetch(`${api.GENR_CHART_API}/${id}`, {
-        headers: {
-            'Accept-Language': 'en-US'
-          }
-      })
-        .then((res) => res.json())
-        .then((res) => res.artists.data)
+    // const getData = () =>
+    //   fetch(`${api.GENR_CHART_API}/${id}`, {
+    //     headers: {
+    //         'Accept-Language': 'en-US'
+    //       }
+    //   })
+    //     .then((res) => res.json())
+    //     .then((res) => res.artists.data)
   
-    React.useEffect(() => {
+    // React.useEffect(() => {
+    //   setLoading(true)
+    //   getData()
+    //     .then((res) => {
+    //       setLoading(false)
+    //       setData(res)
+    //       console.log(data)
+    //     })
+    //     .catch(err => {
+    //         // @TODO: HANDLE ERROR
+    //         setLoading(false)
+    //         console.log(err)
+    //     })
+    // })
+  
+
+    const getData = () =>
+    fetch(`${api.GENR_CHART_API}/${id}`, {
+      headers: {
+          'Accept-Language': 'en-US'
+        }
+    })
+      .then((res) => res.json())
+      .then((res) => res.artists.data)
+
+    useEffect(() => {
       setLoading(true)
       getData()
-        .then((res) => {
+        .then((data) => {
           setLoading(false)
-          setData(res)
-          console.log(data)
+          setData(data)
         })
         .catch(err => {
             // @TODO: HANDLE ERROR
             setLoading(false)
             console.log(err)
         })
-    }, [])
-  
+    }, [id])
+
     return (
         <div>
             {loading && (<GHSkeleton />)}
