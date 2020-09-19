@@ -7,9 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 
 import './styles.css';
+import ArtistModal from '../ArtistModal/ArtistModal';
+import { api } from '../../config';
 
 const useStyles = makeStyles({
     root: {
@@ -23,6 +25,29 @@ const useStyles = makeStyles({
 
 function Artists({data}) {
     const classes = useStyles();
+    const [loading, setLoading] = React.useState([])
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [currentArtist, setCurrentArtist] = React.useState({});
+
+    const handleOpenModal = (id) => {
+        setLoading(true);
+        fetch(`${api.ARTIST_API}/${id}`, {
+            headers: {
+                'Accept-Language': 'en-US'
+            }
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            setLoading(false);
+            setCurrentArtist(res);
+            setTimeout(() => setIsOpen(false))
+        })
+        .catch(err => {
+            // @TODO: HANDLE
+            setLoading(false);
+            console.log(err)
+        })
+    }
 
     return (
         <div className="artists__container">
@@ -43,7 +68,7 @@ function Artists({data}) {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary">
+                                <Button size="small" color="primary" onClick={() => handleOpenModal(artist.id)}>
                                     More About {artist.name}
                                 </Button>
                             </CardActions>
@@ -51,6 +76,15 @@ function Artists({data}) {
                     </Grid>
                 ))}
             </Grid>
+            {/* @TODO: STYLE SPINNER */}
+            {loading && (<CircularProgress />)}
+            <ArtistModal 
+                open={isOpen}
+                handleClose={() => setIsOpen(false)}
+                data={currentArtist}
+            >
+                
+            </ArtistModal>
         </div>
     )
 }
