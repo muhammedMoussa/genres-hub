@@ -12,7 +12,6 @@ import AlbumIcon from '@material-ui/icons/Album';
 import LinkIcon from '@material-ui/icons/Link';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-import './styles.css';
 const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: '95%',
@@ -48,8 +47,8 @@ const ArtistModal = ({
             <Card className={classes.root}>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="recipe" src={data.picture_small}>
-                        </Avatar>
+                      <Avatar src={data.picture_small}>
+                      </Avatar>
                     }
                     title={data.name}
                 />
@@ -77,27 +76,26 @@ const ArtistModal = ({
     
                 </CardActions>
                 </Card>
-            {/* <Button onClick={() => handleClose()} className="exit__Btn" type="Button">X</Button> */}
           </DialogContent>
         </Dialog>
       )
 }
 
 ArtistModal.propTypes = {
-    open: PropTypes.bool,
-    fullWidth: PropTypes.bool,
-    handleClose: PropTypes.func,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]),
-    size: PropTypes.string,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  open: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  handleClose: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  size: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
   
 ArtistModal.defaultProps = {
-    size: 'md',
-    width: 'inherit',
+  size: 'md',
+  width: 'inherit',
 }
 
 export default ArtistModal

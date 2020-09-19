@@ -3,6 +3,7 @@ import {
     FETCH_GET_GENRS_SUCCESS, 
     FETCH_GET_GENRS_ERROR 
 } from '../../config'
+// @TODO: ADD ANOTHER ACTIONS WHEN FIX REDUX ISSUE
 
 export function fetchGenrsPending() {
     return {

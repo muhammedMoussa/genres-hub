@@ -6,7 +6,7 @@ function GHSkeleton() {
     return (
       <div style={{margin: '50px'}}>
         <Grid container spacing={5} >
-          { Array.from({length: 20}, (x, i) => (
+          {Array.from({length: 20}, (x, i) => (
               <Grid item xs={12} sm={6} md={4} key={i} >
                 <div>
                   <Skeleton variant="rect" height={118} /> <br />

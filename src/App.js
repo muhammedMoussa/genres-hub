@@ -1,13 +1,14 @@
 import React from 'react';
-import './App.css';
-import HooksGenrs from './components/hooks/HooksGenrs/HooksGenrs';
 import Header from './components/Header/Header';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+
 import Genr from './components/hooks/Genr/Genr';
+import HooksGenrs from './components/hooks/HooksGenrs/HooksGenrs';
+import './App.css';
 
 function App() {  
   return (

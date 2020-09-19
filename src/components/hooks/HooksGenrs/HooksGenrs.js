@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core';
 
 import { api, headers } from '../../../config';
-import GenerCard from '../../GenerCard';
 import './styles.css'
 import GHSkeleton from '../../GHSkeleton/GHSkeleton';
 import ErrorAlert from '../../ErrorAlert/ErrorAlert';
+import GenerCard from '../../GenerCard/GenerCard';
 
 function HooksGenrs() {
     const [data, setData] = useState([])

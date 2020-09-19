@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getGenrsError, getGenrs, getGenrsPending } from '../../store/reducers';
 import fetchGenrs from '../../store/actions/fetchGenrs';
-import GenerCard from '../GenerCard';
+// import GenerCard from '../GenerCard';
 
 class ReduxGenrs extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ render() {
   return (
       <div className='product-list-wrapper'>
         {genrs.map(data => {
-          <GenerCard data={data} />
+          // <GenerCard data={data} />
         })}
       </div>
     )

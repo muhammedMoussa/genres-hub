@@ -3,12 +3,12 @@ import {
     FETCH_GET_GENRS_SUCCESS, 
     FETCH_GET_GENRS_ERROR 
 } from '../../config'
+// @TODO: ADD ANOTHER ACTIONS AND STATE PICES WHEN FIX REDUX ISSUE
 
 const initialState = {
     pending: false,
     genrs: [],
-    error: null,
-    test: 'aaaaaaaaaa'
+    error: null
 }
 
  function rootReducer(state = initialState, action) {
