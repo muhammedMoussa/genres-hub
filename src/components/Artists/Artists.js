@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 function Artists({data}) {
     const classes = useStyles();
-    const [loading, setLoading] = React.useState([])
+    const [loading, setLoading] = React.useState(false)
     const [isOpen, setIsOpen] = React.useState(false);
     const [currentArtist, setCurrentArtist] = React.useState({});
 
@@ -40,7 +40,7 @@ function Artists({data}) {
         .then((res) => {
             setLoading(false);
             setCurrentArtist(res);
-            setTimeout(() => setIsOpen(false))
+            setTimeout(() => setIsOpen(true))
         })
         .catch(err => {
             // @TODO: HANDLE
@@ -77,7 +77,7 @@ function Artists({data}) {
                 ))}
             </Grid>
             {/* @TODO: STYLE SPINNER */}
-            {loading && (<CircularProgress />)}
+            {loading && (<div className="spinner__container"><CircularProgress /></div>)}
             <ArtistModal 
                 open={isOpen}
                 handleClose={() => setIsOpen(false)}

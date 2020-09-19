@@ -1,3 +1,9 @@
 .artists__container {
     margin: 50px;
 }
+
+.spinner__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
