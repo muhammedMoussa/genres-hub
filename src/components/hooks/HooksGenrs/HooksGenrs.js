@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
 
 import { api } from '../../../config';
 import GenerCard from '../../GenerCard';
 import './styles.css'
+import GHSkeleton from '../../GHSkeleton/GHSkeleton';
 
 function HooksGenrs() {
     const [data, setData] = useState([])
@@ -38,12 +38,13 @@ function HooksGenrs() {
           <h2>List of music genres for you!</h2>
           <Grid container spacing={5} className="">
             {loading && 
-            <div>
-            <Skeleton variant="text" />
-            <Skeleton variant="circle" width={40} height={40} />
-            <Skeleton variant="rect" width={210} height={118} />
-          </div>
+              Array.from({length: 20}, (x, i) => (
+                <Grid item xs={12} md={4} key={i} >
+                  <GHSkeleton />
+                </Grid>
+              ))
             }
+            
             {data?.map((item) => (
                 <Grid item xs={12} md={4} key={item.id} >
                   <GenerCard data={item} />
